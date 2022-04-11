@@ -4,6 +4,7 @@ notetype : feed
 date : 2021-04-11
 time: 17:45
 mermaid: true
+mathjax: true
 ---
 # Query Cost Estimation Example
 
@@ -36,14 +37,15 @@ WHERE R.sid = S.sid AND R.bid = 100 AND S.rating > 5;
 
 
 ## Join using Page Nested Loop Join
-<div class='mermaid'>
+```mermaid
 flowchart BT;
 S --500--> J["Join (sid)"];
 R --1000--> J["Join (sid)"];
 J --> Sr["Selection (rating ≥ 5)"];
 Sr --> Sb["Selection (bid = 100)"];
 Sb --> Ps["Projection (sname)"];
-</div>
+```
+
 We start from the left child, that is a SeqScan on relation S. In PNLJ, for each page in S, we scan the inner relation R. So the cost is $500+500\times1000=500500$.
 
 ## Push Down Selection
