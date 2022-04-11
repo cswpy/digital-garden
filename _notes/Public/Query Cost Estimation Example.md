@@ -35,7 +35,7 @@ WHERE R.sid = S.sid AND R.bid = 100 AND S.rating > 5;
 
 
 ## Join using Page Nested Loop Join
-<div class='mermaid'> mermaid
+<div class='mermaid'>
 flowchart BT;
 S --500--> J["Join (sid)"];
 R --1000--> J["Join (sid)"];
