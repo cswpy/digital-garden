@@ -42,7 +42,6 @@ R --1000--> J["Join (sid)"];
 J --> Sr["Selection (rating ≥ 5)"];
 Sr --> Sb["Selection (bid = 100)"];
 Sb --> Ps["Projection (sname)"];
-
 </div>
 We start from the left child, that is a SeqScan on relation S. In PNLJ, for each page in S, we scan the inner relation R. So the cost is $500+500\times1000=500500$.
 
