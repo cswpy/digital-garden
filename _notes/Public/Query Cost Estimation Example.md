@@ -3,6 +3,7 @@ title : Query Cost Estimation Example
 notetype : feed
 date : 2021-04-11
 time: 17:45
+mermaid: true
 ---
 # Query Cost Estimation Example
 
