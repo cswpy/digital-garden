@@ -9,15 +9,19 @@ time: 17:45
 Consider the following tables 
 
 **Sailors**
+
 |  sid  | sname  | rating |   age   |
 |:-----:|:------:|:------:|:-------:|
 | `INT` | `TEXT` | `INT`(0-9)  | `FLOAT` |
+
 Sailor relation has 500 pages, each with 80 tuples. The `rating` column can only take an integer between 0 to 9.
 
 **Reserves**
+
 |  sid  |  bid  |  day   | rname  |
 |:-----:|:-----:|:------:|:------:|
 | `INT` | `INT`(1-100) | `DATE` | `TEXT` |
+
 Reserves relation has 1000 pages, each with 100 tuples. The `bid` column has 100 unique IDs.
 
 Additionally, each page is 4000 bytes large, and we have 5 pages in buffer pool.
