@@ -33,7 +33,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Digital Garden" property="og:site_name" />
     <meta
-        content="A Jekyll theme for Obsidian users to build digital garden"
+        content="Phill's Personal Blog & Digital Garden"
         property="og:description">
     <meta content="{{ site.url }}/about/" property="article:author">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,7 +110,6 @@
                                     </span>
                                 </a>
                             </div>
-                        <h1>{{page.title}}</h1>
                         {%- include Content.html -%}
                         {%- include Backlinks.html -%}
                         </div>
@@ -127,7 +126,6 @@
                     <main>
                         {%- include Content.html -%}
                         {%- include Footer.html -%}
-
                     </main>
                 </div>
             {%- endif -%}
@@ -136,7 +134,6 @@
 
             {%- if page.permalink == "/posts" -%}
                 <div class="column is-half">
-                    <h1>{{page.title}}</h1>
                     <div class="block">
                         {% for item in site.posts %}
                             <div class="block note-cards">

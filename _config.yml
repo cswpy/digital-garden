@@ -28,7 +28,7 @@ url: "https://blog.phillipw.info" # the base hostname & protocol for your site, 
 # your social media links etc
 #######################################################################
 
-heading: Digital Garden # Change this 
+heading: Phill's Blog # Change this 
 copyright:  
   year: 2022
   msg: Pengyu Wang # This is a mandatory attribute for copyright to be displayed ; If deleting this, edit at footer layout.
