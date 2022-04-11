@@ -93,6 +93,21 @@
             or page.content-type == "post"  -%}
                 <div class="column is-three-fifths">
                     <main>
+                        {%- if content contains 'mermaid' -%}
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0/mermaid.min.js"></script>
+                        <script>
+                        const config = {
+                            startOnLoad:true,
+                            theme: 'forest',
+                            flowchart: {
+                                useMaxWidth:false,
+                                htmlLabels:true
+                                }
+                        };
+                        mermaid.initialize(config);
+                        window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+                        </script>
+                        {% endif %}
                         <div class="note-page-section">
                             <div class="buttons for-back-home">
                                 {%- if site.preferences.homepage.enabled -%}
@@ -111,9 +126,6 @@
                                 </a>
                             </div>
                         <h1>{{page.title}}</h1>
-                        {% if page.mermaid %}
-                            {% include mermaid.html %}
-                        {% endif %}
                         {%- include Content.html -%}
                         {%- include Backlinks.html -%}
                         </div>
