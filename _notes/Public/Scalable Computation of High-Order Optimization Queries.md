@@ -55,5 +55,6 @@ Direct is too slow and is not scalable, also, the optimization problem is hard t
 - SketchRefine decomposes optimization problem into smaller subproblems
 - Empoy Greedy Backtracking to modify answer to be feasible
 - Mostly executed under 10s
+
 ### Cons
 May have false infeasible query answer
