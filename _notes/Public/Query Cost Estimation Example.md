@@ -72,10 +72,29 @@ S -- 500 --> Sr["Selection (rating ≥ 5)"]
 J -->  Ps["Projection (sname)"]
 
 ```
-Now we push down both selection to on-the-fly during the SeqScan of both relations. Firstly, we read in 500 pages from outer relation S one by one, and brings up a full page of selected tuples to the join operator sequentially. The join operator then calls the right child, doing a SeqScan on relation R, coupled with a on-the-fly filtering for `bid`. By the same reasoning, we could assume that the selection would produce 10 pages of desired tuples with a reduction factor of 0.1. For each call on the right child, we incur a read cost of 1000, even though the result is only 10 pages long. This gives us an estimate of $500+250\times1000=250500$. Notice here that by pushing down another selection we did not reduce cost any further. This is because we never save the intermediate result in the right child, so we have to read R entirely every time the left child calls.
+Now we push down both selection to on-the-fly during the SeqScan of both relations. Firstly, we read in 500 pages from outer relation S one by one, and brings up a full page of selected tuples to the join operator sequentially. The join operator then calls the right child, doing a SeqScan on relation R, coupled with a on-the-fly filtering for `bid`. By the same reasoning, we could assume that the selection would produce 10 pages of desired tuples with a reduction factor of 0.01. For each call on the right child, we incur a read cost of 1000, even though the result is only 10 pages long. This gives us an estimate of $500+250\times1000=250500$. Notice here that by pushing down another selection we did not reduce cost any further. This is because we never save the intermediate result in the right child, so we have to read R entirely every time the left child calls.
 
 ## Reorder Join
 ```mermaid
 flowchart BT
-R --1000--> Sb[Selection]
+S --500--> Sr["Selection (rating≥5)"]
+R --1000--> Sb["Selection (bid = 100)"]
+Sb --10--> J
+Sr --250--> J["Join (sid)"]
+J --> p["Projection (sname)"]
 ```
+We reorder the join tables by using `R` as the outer relation and `S` as the inner relation. By the same logic, the cost is $1000+10*500=6000$. An interesting fact here is that even though the outer relation R is larger in size, we incur a lower cost because after pushing down the selection, the filtered `R` relation is smaller than the filtered `S` relation.
+
+## Materialization
+```mermaid
+flowchart BT
+S --500--> Sr["Selection (rating≥5)"]
+Sr --250--> M["Materialize"]
+R --1000--> Sb["Selection (bid = 100)"]
+Sb --> J["Join (sid)"]
+M --> J
+J --> p["Projection (sname)"]
+
+```
+
+In previous situations, we have to read the inner table once whenever there is a page of outer table filtered. We could avoid doing the repeated inner table read by reading it once, persist the result and read from there every time. This process is called **materialization**.  
