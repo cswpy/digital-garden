@@ -73,3 +73,9 @@ J -->  Ps["Projection (sname)"]
 
 ```
 Now we push down both selection to on-the-fly during the SeqScan of both relations. Firstly, we read in 500 pages from outer relation S one by one, and brings up a full page of selected tuples to the join operator sequentially. The join operator then calls the right child, doing a SeqScan on relation R, coupled with a on-the-fly filtering for `bid`. By the same reasoning, we could assume that the selection would produce 10 pages of desired tuples with a reduction factor of 0.1. For each call on the right child, we incur a read cost of 1000, even though the result is only 10 pages long. This gives us an estimate of $500+250\times1000=250500$. Notice here that by pushing down another selection we did not reduce cost any further. This is because we never save the intermediate result in the right child, so we have to read R entirely every time the left child calls.
+
+## Reorder Join
+```mermaid
+flowchart BT
+R --1000--> Sb[Selection]
+```
