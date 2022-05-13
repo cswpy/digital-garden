@@ -111,4 +111,4 @@ Sb --10--> J
 J --> P["Projection (sname)"]
 ```
 
-Now we consider the situation where instead of Nested Loop Join, we use Sort Merge Join as the algorithm. 
+Now we consider the situation where instead of Nested Loop Join, we use Sort Merge Join as the algorithm. We can recall that for a K-way Merge Sort, we first utilize $B$ pages to produce runs with length $N/B$ in the first streaming pass. Then we require $\lceil\log_{B-1}(N/B)\rceil$ merge passes to merge the data. For the left relation `S`, we need 
