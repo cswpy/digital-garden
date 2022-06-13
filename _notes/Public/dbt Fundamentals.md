@@ -46,7 +46,7 @@ Testing is used to validate the assumptions we have on the data going into the m
 Use `dbt test test_type:generic/singular` to specify test type, use `dbt test model_name` to run tests pertaining to a single model
 
 ## Documentation
-Documentation in dbt are in the `.yml` files with the optional reference to `.md` files. We use doc blocks in `.md` files to make the markdown syntax accessible from the YAML file, that is `{% docs block_name %}` and `{% enddocs %}` to enclose a markdown block. We document using the `description` keyword in the YAML file and use `'{{ doc("block_name")}}'` to reference the markdown block.
+Documentation in dbt are in the `.yml` files with the optional reference to `.md` files. We use doc blocks in `.md` files to make the markdown syntax accessible from the YAML file, that is {`% docs block_name %`} and  {`% enddocs %`} to enclose a markdown block. We document using the `description` keyword in the YAML file and use `'{{ doc("block_name")}}'` to reference the markdown block.
 
 ## Deployment
 We usually develop the dbt code in the development branch, once they are ready, we mergey the code into ta deployment branch. The deployment usually runs on a schedule. 
